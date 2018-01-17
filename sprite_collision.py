@@ -33,6 +33,16 @@ class Player(pygame.sprite.Sprite):
         if self.x_speed != 0:
             self.rect.x = self.rect.x + self.x_speed
 
+class Wall(pygame.sprite.Sprite):
+    def __init__(self, x, y):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.Surface((50, 50))
+        self.image.fill(DARKPURPLE) # background color of sprite
+        self.rect = self.image.get_rect()
+        self.rect.x = x
+        self.rect.y = y
+
+
 # Initialize game
 pygame.init()
 
@@ -40,17 +50,21 @@ pygame.init()
 all_sprites = pygame.sprite.Group()
 
 # Set up the display
-screen = pygame.display.set_mode((320, 240))
+screen = pygame.display.set_mode((500, 500))
 
 # Set game clock
 clock = pygame.time.Clock()
 
 # Create player sprite instance
-player = Player(0, 100) # Create the player
-
+player = Player(0, 200)
 # Add player sprite to the group of all sprites
-# !!!!!! IMPORTANT !!!!!!
-all_sprites.add(player);
+all_sprites.add(player); # !!!!!! IMPORTANT !!!!!!
+
+# Create some walls
+wall1 = Wall(300, 150)
+wall2 = Wall(300, 200)
+wall3 = Wall(300, 250)
+all_sprites.add(wall1, wall2, wall3); # !!!!!! IMPORTANT !!!!!!
 
 # Run game loop
 done = False
