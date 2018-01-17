@@ -66,6 +66,12 @@ wall2 = Wall(300, 200)
 wall3 = Wall(300, 250)
 all_sprites.add(wall1, wall2, wall3); # !!!!!! IMPORTANT !!!!!!
 
+# Create a group of sprites that represent obstacles
+# Will be used for detecting collisions between player and walls
+obstacle_sprites = pygame.sprite.Group()
+obstacle_sprites.add(wall1, wall2, wall3); # !!!!!! IMPORTANT !!!!!!
+
+
 # Run game loop
 done = False
 while not done:
@@ -92,6 +98,13 @@ while not done:
 
     # Update every sprite !!!!!! IMPORTANT !!!!!!
     all_sprites.update()
+
+    # Check if player hit any obstacles. It returns an array of all walls that are hit.
+    obstacle_hits = pygame.sprite.spritecollide(player, obstacle_sprites, False)
+    if len(obstacle_hits) > 0:
+        print "We hit the wall!!"
+    else:
+        print "We did not hit anything."
 
     # Draw the scene
     screen.fill(WHITE)
