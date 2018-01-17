@@ -18,8 +18,9 @@ LIGHTBLUE= (  12, 170, 249)
 class Player(pygame.sprite.Sprite):
     def __init__(self, x, y):
         pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.Surface((20, 20))
-        self.image.fill(YELLOW)
+        self.image = pygame.Surface((50, 50))
+        self.image.fill(WHITE) # background color of sprite
+        pygame.draw.ellipse(self.image, BLACK, [0,0,50,50]) # draw ellipse on image
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
@@ -79,7 +80,7 @@ while not done:
     all_sprites.update()
 
     # Draw the scene
-    screen.fill(BLACK)
+    screen.fill(WHITE)
 
     # Draw all the sprites
     all_sprites.draw(screen)
