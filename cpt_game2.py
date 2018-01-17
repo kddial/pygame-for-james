@@ -85,7 +85,7 @@ while not done:
     pos = pygame.mouse.get_pos()
     x_mouse = pos[0]
     y_mouse = pos[1]
-    print pos
+
     if x_mouse >= 200 and x_mouse <= 500 and y_mouse >= 160 and y_mouse <= 260 and click:
         print "ayy"
     if initial_jump:
@@ -108,6 +108,8 @@ while not done:
         can_jump = True
     else:
         during_jump = True
+
+    print sscreen_x, sscreen_y
     # First, clear the screen to white. Don't put other drawing commands
     # above this, or they will be erased with this command.
     screen.fill(WHITE)
